@@ -18,8 +18,20 @@
             <div class="col-12 col-md-9 col-lg-10">
                 <select name="toLanguage">
                     @foreach ($languages as $language)
-                    <option value="{{ $language }}">{{ $language }}</option>
+                        <option value="{{ $language }}">{{ $language }}</option>
                     @endforeach
+                </select>
+            </div>
+            <div class="col-12 col-md-3 col-lg-2">
+                {{ __('msg.translate-search-group') }}
+            </div>
+            <div class="col-12 col-md-9 col-lg-10">
+                <select name="search-category">
+                    <option value="all">{{ __('msg.translate-search-for-all') }}</option>
+                    <option value="itemname">{{ __('msg.translate-search-for-hard-items') }}</option>
+                    <option value="magicitemname">{{ __('msg.translate-search-for-generated-items') }}</option>
+                    <option value="area">{{ __('msg.translate-search-for-area') }}</option>
+                    <option value="skill">{{ __('msg.translate-search-for-skill') }}</option>
                 </select>
             </div>
             <div class="col-12">

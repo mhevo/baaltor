@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/importtranslations', [TranslateController::class, 'importTranslations']);
 });
 
+Route::get('/translate', function () {
+    return redirect('/');
+});
 Route::post('/translate', [TranslateController::class, 'translate']);
 
 Route::get('/dashboard', function () {
