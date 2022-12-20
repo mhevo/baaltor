@@ -6,18 +6,24 @@
     <form method="POST" action="/translate">
         <div class="row gy-1">
             @csrf
-            <div class="col-md-8 col-lg-3">
-                <input class="form-control" type="text" name="translateFrom" placeholder="your item name" />
+            <div class="col-12 col-md-3 col-lg-2">
+                {{ __('msg.translate-search') }}
             </div>
-            <div class="col-md-4 col-lg-4">
+            <div class="col-12 col-md-9 col-lg-10">
+                <input class="form-control" type="text" name="translateFrom" placeholder="{{ __('msg.translate-your-item-name') }}" />
+            </div>
+            <div class="col-12 col-md-3 col-lg-2">
+                {{ __('msg.translate-translate-to') }}
+            </div>
+            <div class="col-12 col-md-9 col-lg-10">
                 <select name="toLanguage">
                     @foreach ($languages as $language)
                     <option value="{{ $language }}">{{ $language }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-12 col-lg-9">
-                <button type="submit" class="btn btn-primary">Translate</button>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">{{ __('msg.translate-translate-button') }}</button>
             </div>
         </div>
     </form>
