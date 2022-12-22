@@ -71,21 +71,29 @@ class TranslateModel extends Model
 
         $ts = Translations::where('value', 'LIKE', '%' . $input . '%')->get();
 
+        $return = false;
 
         if ($ts->isNotEmpty() === true) {
-            $this->searchResults[] = $ts;
-            return true;
+            foreach ($ts as $t) {
+                $w = $t->word()->get();
+                if ($this->isInSearchCategory($w[0]->filename) === false) {
+                    continue;
+                }
+                $this->searchResults[$t->lang][] = $t;
+                $return = true;
+            }
         }
 
-        return false;
+        return $return;
     }
 
     /**
      *
      * @param string $toLanguage
+     * @param bool $oneWord
      * @return array
      */
-    public function combineSearchResults(string $toLanguage): array
+    public function combineSearchResults(string $toLanguage, bool $oneWord): array
     {
         $output = [];
         foreach ($this->getSearchResults() as $lang => $searchResult) {
@@ -110,7 +118,15 @@ class TranslateModel extends Model
                 ) {
                     continue;
                 }
-                $output[$lang][] = $translatedWord;
+                if ($oneWord === true) {
+                    if (isset($output[$lang][0]) === false) {
+                        $output[$lang][0] = $translatedWord;
+                    } else {
+                        $output[$lang][0] .= ' ' . $translatedWord;
+                    }
+                } else {
+                    $output[$lang][] = $translatedWord;
+                }
             }
         }
         return $output;

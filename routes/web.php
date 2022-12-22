@@ -16,7 +16,7 @@ use App\Http\Controllers\TranslateController;
 */
 
 Route::get('/', function () {
-    return view('start', ['languages' => TranslateController::$languages]);
+    return view('start', ['languages' => TranslateController::$languages, 'input' => '', 'searchCategory' => '', 'toLanguage' => 'enUs']);
 });
 
 Route::middleware('auth')->group(function () {

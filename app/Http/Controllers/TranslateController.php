@@ -67,6 +67,10 @@ class TranslateController extends Controller
         $toLanguage = $request->get('toLanguage');
         $searchCategory = $request->get('search-category');
 
+        if (empty(trim($input)) === true) {
+            return redirect('/');
+        }
+
         if (in_array($toLanguage, self::$languages) === false) {
             $toLanguage = 'enUs';
         }
@@ -74,14 +78,16 @@ class TranslateController extends Controller
         $tm = new TranslateModel();
         $tm->setSearchCategory($searchCategory);
         $tm->searchWords($input);
-        $output = $tm->combineSearchResults($toLanguage);
+        $output = $tm->combineSearchResults($toLanguage, true);
         if (empty($output) === true) {
             $tm->searchWord($input);
-            $output = $tm->combineSearchResults($toLanguage);
+            $output = $tm->combineSearchResults($toLanguage, false);
         }
-
+dump($output);
         return view('translationresult', [
             'input' => $input,
+            'toLanguage' => $toLanguage,
+            'searchCategory' => $searchCategory,
             'resultset' => $output,
             'languages' => self::$languages
         ]);
