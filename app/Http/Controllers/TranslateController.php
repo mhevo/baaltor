@@ -83,7 +83,7 @@ class TranslateController extends Controller
             $tm->searchWord($input);
             $output = $tm->combineSearchResults($toLanguage, false);
         }
-dump($output);
+
         return view('translationresult', [
             'input' => $input,
             'toLanguage' => $toLanguage,

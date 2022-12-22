@@ -7,7 +7,7 @@
         <div class="col-4">
                 {{ __('msg.translate-result-searchword') }}
         </div>
-        <div class="col-8">
+        <div class="col-8 fw-bold">
             {{ $input }}
         </div>
         <div class="col-4">
