@@ -9,19 +9,19 @@ use App\Models\Translations;
 class TranslateController extends Controller
 {
     public static array $languages = [
-        'enUS',
-        'zhTW',
         'deDE',
+        'enUS',
         'esES',
+        'esMX',
         'frFR',
         'itIT',
+        'jaJP',
         'koKR',
         'plPL',
-        'esMX',
-        'jaJP',
         'ptBR',
         'ruRU',
         'zhCN',
+        'zhTW',
     ];
 
     public static array $searchCategories = [
@@ -78,17 +78,17 @@ class TranslateController extends Controller
         $tm = new TranslateModel();
         $tm->setSearchCategory($searchCategory);
         $tm->searchWords($input);
-        $output = $tm->combineSearchResults($toLanguage, true);
-        if (empty($output) === true) {
-            $tm->searchWord($input);
-            $output = $tm->combineSearchResults($toLanguage, false);
-        }
-dump($output);
+        $output1 = $tm->combineSearchResults($toLanguage, true);
+
+        $tm->resetSearchResults();
+        $tm->searchWord($input);
+        $output2 = $tm->combineSearchResults($toLanguage, false);
+
         return view('translationresult', [
             'input' => $input,
             'toLanguage' => $toLanguage,
             'searchCategory' => $searchCategory,
-            'resultset' => $output,
+            'resultset' => [$output1, $output2],
             'languages' => self::$languages
         ]);
     }
