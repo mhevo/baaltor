@@ -151,6 +151,11 @@ class TranslateModel extends Model
         }
     }
 
+    public function resetSearchResults()
+    {
+        $this->searchResults = [];
+    }
+
     private function insertWord($word, $file)
     {
         $skipKeys = [
