@@ -3,6 +3,7 @@
 return [
     'navbar-brand' => "Baaltor",
     'navlink-translate' => "Translate",
+    'navlink-imprint' => "Impressum",
     'translate-search' => "Search",
     'translate-translate-to' => "Translate to",
     'translate-translate-button' => "Translate",

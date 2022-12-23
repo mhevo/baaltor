@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('start', ['languages' => TranslateController::$languages, 'input' => '', 'searchCategory' => '', 'toLanguage' => 'enUs']);
 });
 
+Route::get('/imprint', function () {
+    return view('imprint');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/importtranslations', [TranslateController::class, 'importTranslations']);
 });
@@ -28,7 +32,7 @@ Route::get('/translate', function () {
 });
 Route::post('/translate', [TranslateController::class, 'translate']);
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -38,4 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';*/
