@@ -8,3 +8,6 @@
 
     gtag('config', 'G-MGW81B8D4E');
 </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5159339379129247"
+        crossorigin="anonymous"></script>
