@@ -3,7 +3,7 @@
         <div class="col">&nbsp;</div>
     </div>
 
-    <form method="POST" action="/translate">
+    <form name="translate" method="POST" action="/translate">
         <div class="row gy-1">
             @csrf
             <div class="col-12 col-md-3 col-lg-2">
